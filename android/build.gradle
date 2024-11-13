@@ -1,0 +1,42 @@
+group 'me.pushy.sdk.flutter'
+version '1.0.0'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.0.1'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    if (android.hasProperty('namespace')){
+        namespace 'me.pushy.sdk.flutter'
+    }
+
+    compileSdkVersion 31
+
+    defaultConfig {
+        minSdkVersion 16
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+}
+
+dependencies {
+    // Pushy Android SDK
+    implementation 'me.pushy:sdk:1.0.120'
+}
