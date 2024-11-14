@@ -160,6 +160,7 @@ public class PushyFlutter: NSObject, FlutterPlugin, FlutterStreamHandler {
     }
     
     func register(_ result: @escaping FlutterResult) {
+        print("PushyFlutter: register Testing 102");
         // Register the device for push notifications
         getPushyInstance().register({ (error, deviceToken) in
             // Handle registration errors
@@ -169,7 +170,7 @@ public class PushyFlutter: NSObject, FlutterPlugin, FlutterStreamHandler {
                                            message: String(describing: error!),
                                            details: nil))
             }
-            
+            print("PushyFlutter: register Testing 103 / deviceToken: \(deviceToken)");
             // Send device token to Flutter app
             result(deviceToken)
         })
