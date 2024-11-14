@@ -9,6 +9,7 @@ public class PushyFlutter: NSObject, FlutterPlugin, FlutterStreamHandler {
     var startupNotification: [AnyHashable : Any]?
     
     public static func register(with registrar: FlutterPluginRegistrar) {
+        print("PushyFlutter: register Testing 101");
         // On iOS 14+, Flutter apps built in the Debug scheme
         // Need to be attached to the Xcode debugger
         // 
