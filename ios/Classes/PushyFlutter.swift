@@ -200,26 +200,28 @@ public class PushyFlutter: NSObject, FlutterPlugin, FlutterStreamHandler {
         // Print notification payload data
         print("Received notification: \(data)")
         
-        // Convert to JSON (stringified)
-        let json: String
+        print("Received notification: Testing 101 \(data)")
+
+        // // Convert to JSON (stringified)
+        // let json: String
         
-        do {
-            // Attempt to serialize into JSON string
-            json = String(bytes: try JSONSerialization.data(withJSONObject: data, options: []), encoding: String.Encoding.utf8) ?? ""
-        }
-        catch let err {
-            // Throw err
-            self.eventSink?(FlutterError(code: "PUSHY ERROR",
-                                         message: err.localizedDescription,
-                                         details: nil))
-            return
-        }
+        // do {
+        //     // Attempt to serialize into JSON string
+        //     json = String(bytes: try JSONSerialization.data(withJSONObject: data, options: []), encoding: String.Encoding.utf8) ?? ""
+        // }
+        // catch let err {
+        //     // Throw err
+        //     self.eventSink?(FlutterError(code: "PUSHY ERROR",
+        //                                  message: err.localizedDescription,
+        //                                  details: nil))
+        //     return
+        // }
         
-        // Send JSON data to Flutter app
-        self.eventSink?(json)
+        // // Send JSON data to Flutter app
+        // self.eventSink?(json)
         
-        // Call the completion handler immediately on behalf of the app
-        completionHandler(UIBackgroundFetchResult.newData)
+        // // Call the completion handler immediately on behalf of the app
+        // completionHandler(UIBackgroundFetchResult.newData)
     }
     
     func notificationClickListener(userInfo: [AnyHashable : Any]) {
