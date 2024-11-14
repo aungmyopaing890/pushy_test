@@ -44,7 +44,7 @@ public class PushyFlutter: NSObject, FlutterPlugin, FlutterStreamHandler {
     
     public func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) -> Bool {
         // It seems this method declaration is necessary for handling notification tap while app is killed
-        return true
+        return false
     }
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
