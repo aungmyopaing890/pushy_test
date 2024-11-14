@@ -43,6 +43,7 @@ public class PushyFlutter: NSObject, FlutterPlugin, FlutterStreamHandler {
     }
     
     public func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) -> Bool {
+        print("Received notification: userInfo \(userInfo)")
         // It seems this method declaration is necessary for handling notification tap while app is killed
         return false
     }
@@ -173,7 +174,7 @@ public class PushyFlutter: NSObject, FlutterPlugin, FlutterStreamHandler {
         self.eventSink = eventSink
         
         // Set notification handler to our own
-        getPushyInstance().setNotificationHandler(self.notificationHandler)
+        // getPushyInstance().setNotificationHandler(self.notificationHandler)
         
         // Set notification click listener to our own
         getPushyInstance().setNotificationClickListener(self.notificationClickListener)
