@@ -119,19 +119,19 @@ public class PushyFlutter: NSObject, FlutterPlugin, FlutterStreamHandler {
         super.init()
         
         // Listen for startup notifications
-        self.getPushyInstance().setNotificationHandler({ (userInfo, completionHandler) in
-                print("setNotificationHandler")
-            if UIApplication.shared.applicationState == .background {
-                // Suppress background notification
-                print("setNotificationHandler: Background notification suppressed based on user preference.")
-                return
-            }else {
-                self.storeStartupNotification(userInfo)
-                completionHandler(UIBackgroundFetchResult.newData)
-            }
+        // self.getPushyInstance().setNotificationHandler({ (userInfo, completionHandler) in
+        //         print("setNotificationHandler")
+        //     if UIApplication.shared.applicationState == .background {
+        //         // Suppress background notification
+        //         print("setNotificationHandler: Background notification suppressed based on user preference.")
+        //         return
+        //     }else {
+        //         self.storeStartupNotification(userInfo)
+        //         completionHandler(UIBackgroundFetchResult.newData)
+        //     }
 
            
-        })
+        // })
         
         // Listen for startup notifications (both listeners required)
         self.getPushyInstance().setNotificationClickListener({ (userInfo) in
