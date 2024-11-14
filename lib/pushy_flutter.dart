@@ -312,7 +312,7 @@ class Pushy {
   static void setAppId(String id) {
     // Store app ID for later (for Web SDK)
     appId = id;
-    
+
     // Not running on Web?
     if (!kIsWeb) {
       // Invoke native method

@@ -25,6 +25,7 @@ import me.pushy.sdk.flutter.config.PushyChannels;
 import me.pushy.sdk.flutter.config.PushySharedPrefs;
 
 public class PushyFlutterBackgroundExecutor implements MethodCallHandler {
+
     private boolean mIsIsolateRunning;
 
     private MethodChannel mBackgroundChannel;
@@ -74,7 +75,7 @@ public class PushyFlutterBackgroundExecutor implements MethodCallHandler {
 
         // Get assets and app bundle path
         AssetManager assets = context.getAssets();
-        
+
         // Fix for NullPointerException when calling findAppBundlePath() in background
         // https://github.com/transistorsoft/flutter_background_fetch/issues/160#issuecomment-751667361
         FlutterInjector.instance().flutterLoader().startInitialization(context);
@@ -156,7 +157,7 @@ public class PushyFlutterBackgroundExecutor implements MethodCallHandler {
         long notificationHandlerCallbackId = sharedPreferences.getLong(PushySharedPrefs.FLUTTER_NOTIFICATION_HANDLER_ID, 0);
 
         // Pass notification (as JSON string) to notification handler through background channel
-        mBackgroundChannel.invokeMethod("onNotificationReceived", new Object[] {notificationHandlerCallbackId, notification.toString()},null);
+        mBackgroundChannel.invokeMethod("onNotificationReceived", new Object[]{notificationHandlerCallbackId, notification.toString()}, null);
     }
 
     private static boolean isInitialized() {
