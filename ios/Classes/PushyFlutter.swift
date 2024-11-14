@@ -9,7 +9,6 @@ public class PushyFlutter: NSObject, FlutterPlugin, FlutterStreamHandler {
     var startupNotification: [AnyHashable : Any]?
     
     public static func register(with registrar: FlutterPluginRegistrar) {
-        print("PushyFlutter: register Testing 101");
         // On iOS 14+, Flutter apps built in the Debug scheme
         // Need to be attached to the Xcode debugger
         // 
@@ -45,7 +44,7 @@ public class PushyFlutter: NSObject, FlutterPlugin, FlutterStreamHandler {
     
     public func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) -> Bool {
         // It seems this method declaration is necessary for handling notification tap while app is killed
-        return false
+        return true
     }
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
@@ -120,19 +119,13 @@ public class PushyFlutter: NSObject, FlutterPlugin, FlutterStreamHandler {
         super.init()
         
         // Listen for startup notifications
-        // self.getPushyInstance().setNotificationHandler({ (userInfo, completionHandler) in
-        //         print("setNotificationHandler")
-        //     if UIApplication.shared.applicationState == .background {
-        //         // Suppress background notification
-        //         print("setNotificationHandler: Background notification suppressed based on user preference.")
-        //         return
-        //     }else {
-        //         self.storeStartupNotification(userInfo)
-        //         completionHandler(UIBackgroundFetchResult.newData)
-        //     }
-
-           
-        // })
+        self.getPushyInstance().setNotificationHandler({ (userInfo, completionHandler) in
+            // Store for later
+            self.storeStartupNotification(userInfo)
+            
+            // Call background completion handler
+            completionHandler(UIBackgroundFetchResult.newData)
+        })
         
         // Listen for startup notifications (both listeners required)
         self.getPushyInstance().setNotificationClickListener({ (userInfo) in
